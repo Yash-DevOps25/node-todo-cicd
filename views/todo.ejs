@@ -150,16 +150,18 @@
             border-radius: 12px;
         }
 
-        .predefined-tasks .checkbox-item {
-            display: flex;
-            align-items: center;
+        .predefined-tasks select {
+            width: 100%;
+            padding: 15px;
             font-size: 1.2rem;
-            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: all 0.3s ease-in-out;
         }
 
-        .checkbox-item label {
-            margin-left: 12px;
-            font-size: 1.2rem;
+        .predefined-tasks select:focus {
+            border-color: #3498db;
         }
 
         .footer {
@@ -243,22 +245,13 @@
         </div>
 
         <div class="predefined-tasks">
-            <div class="checkbox-item">
-                <input type="checkbox" id="task1" name="task1" />
-                <label for="task1">Install and configure Docker</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="task2" name="task2" />
-                <label for="task2">Create a Docker file</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="task3" name="task3" />
-                <label for="task3">Create a Docker image</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="task4" name="task4" />
-                <label for="task4">Create an AWS Cloud account</label>
-            </div>
+            <label for="task-select">Select a Predefined Task:</label>
+            <select id="task-select">
+                <option value="task1">Install and configure Docker</option>
+                <option value="task2">Create a Docker file</option>
+                <option value="task3">Create a Docker image</option>
+                <option value="task4">Create an AWS Cloud account</option>
+            </select>
         </div>
     </div>
 
