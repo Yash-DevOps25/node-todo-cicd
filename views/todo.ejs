@@ -23,18 +23,17 @@
 
         .task-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: center;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
         .task-item {
             background-color: #ffffff;
-            padding: 20px;
+            padding: 15px;
             border-radius: 8px;
             box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-            width: 300px;
-            margin-bottom: 20px;
             transition: transform 0.3s ease;
         }
 
@@ -60,16 +59,6 @@
 
         .task-actions a:hover {
             text-decoration: underline;
-        }
-
-        .task-description {
-            font-size: 18px;
-            margin-bottom: 15px;
-        }
-
-        .task-completed {
-            text-decoration: line-through;
-            color: #95a5a6;
         }
 
         .new-task-form {
@@ -102,6 +91,21 @@
             background-color: #27ae60;
         }
 
+        .checkbox-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            font-size: 18px;
+        }
+
+        .checkbox-item input {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
@@ -109,8 +113,9 @@
 
     <h1>12 Factor App - To-Do List</h1>
 
-    <!-- Display Task List -->
+    <!-- Task List -->
     <div class="task-list">
+        <!-- Existing Tasks (Optional) -->
         <% todolist.forEach(function(todo, index) { %>
         <div class="task-item">
             <div class="task-description <%= todo.completed ? 'task-completed' : '' %>">
@@ -123,6 +128,26 @@
             </div>
         </div>
         <% }); %>
+    </div>
+
+    <!-- Predefined Tasks with Checkboxes -->
+    <div class="checkbox-list">
+        <div class="checkbox-item">
+            <input type="checkbox" id="task1" name="task1" />
+            <label for="task1">Install and configure Docker</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="task2" name="task2" />
+            <label for="task2">Create a Docker file</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="task3" name="task3" />
+            <label for="task3">Create a Docker image</label>
+        </div>
+        <div class="checkbox-item">
+            <input type="checkbox" id="task4" name="task4" />
+            <label for="task4">Create an AWS Cloud account</label>
+        </div>
     </div>
 
     <!-- Add New Task Form -->
