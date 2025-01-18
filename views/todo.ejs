@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List - TCS-ION Project TODO App </title>
+    <title>To-Do List - 12 Factor App</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
@@ -16,13 +16,13 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f8f9fa;
+            background: #e4f2f9;
             color: #333;
-            padding: 50px 15px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            min-height: 100vh;
         }
 
         h1 {
@@ -31,6 +31,7 @@
             margin-bottom: 20px;
             text-align: center;
             font-weight: 600;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
         }
 
         .header-logo {
@@ -41,14 +42,15 @@
         .header-logo img {
             max-width: 150px;
             height: auto;
+            border-radius: 8px;
         }
 
         .todo-container {
             width: 100%;
-            max-width: 800px;
-            background: white;
+            max-width: 900px;
+            background: #ffffff;
             border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
             padding: 40px;
             display: flex;
             flex-direction: column;
@@ -59,6 +61,9 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            padding-right: 10px;
         }
 
         .task-item {
@@ -68,18 +73,21 @@
             align-items: center;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
 
         .task-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transform: translateY(-8px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .task-description {
             font-size: 1.1rem;
             color: #333;
+            word-wrap: break-word;
+            flex: 1;
+            margin-right: 20px;
         }
 
         .task-description.completed {
@@ -151,7 +159,7 @@
 
         .divider {
             margin: 50px 0;
-            border-top: 2px solid #2980b9;
+            border-top: 2px solid #3498db;
         }
 
         .predefined-tasks {
@@ -166,11 +174,18 @@
             font-size: 1rem;
             color: #34495e;
             font-weight: 400;
+            transition: background 0.3s ease;
+        }
+
+        .checkbox-item:hover {
+            background-color: #ecf0f1;
+            transform: translateY(-2px);
         }
 
         .checkbox-item input {
             margin-right: 10px;
             transform: scale(1.2);
+            transition: transform 0.3s ease;
         }
 
         .checkbox-item input[type="checkbox"]:checked + label {
@@ -184,9 +199,11 @@
             cursor: pointer;
         }
 
-        .checkbox-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        .predefined-tasks-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #2980b9;
         }
 
         @media (max-width: 768px) {
@@ -205,6 +222,10 @@
             .task-actions a {
                 font-size: 1.2rem;
             }
+
+            .predefined-tasks-title {
+                font-size: 1.3rem;
+            }
         }
     </style>
 </head>
@@ -217,7 +238,7 @@
              alt="TCS-iON">
     </div>
 
-    <h1>TCS-ION Internship Project To-Do List</h1>
+    <h1>12 Factor App - To-Do List</h1>
 
     <div class="todo-container">
         <!-- Task List -->
@@ -240,6 +261,7 @@
 
         <!-- Predefined Tasks with Checkboxes -->
         <div class="predefined-tasks">
+            <div class="predefined-tasks-title">Predefined Tasks</div>
             <div class="checkbox-item">
                 <input type="checkbox" id="task1" name="task1" />
                 <label for="task1">Install and configure Docker</label>
