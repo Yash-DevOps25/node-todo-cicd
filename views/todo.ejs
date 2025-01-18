@@ -164,22 +164,6 @@
             color: #7f8c8d;
         }
 
-        .add-task-btn {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background-color: #2ecc71;
-            color: #fff;
-            border-radius: 50%;
-            width: 60px;
-            height: 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
         @media (max-width: 768px) {
             .todo-container {
                 padding: 20px;
@@ -213,6 +197,19 @@
 
     <h1>12 Factor App - To-Do List</h1>
 
+    <!-- Add Task and Dropdown Form -->
+    <div class="new-task-form">
+        <form action="/todo/add/" method="post">
+            <select id="task-select" name="task">
+                <option value="task1">Install and configure Docker</option>
+                <option value="task2">Create a Docker file</option>
+                <option value="task3">Create a Docker image</option>
+                <option value="task4">Create an AWS Cloud account</option>
+            </select>
+            <input type="submit" value="Add Task" />
+        </form>
+    </div>
+
     <div class="todo-container">
         <div class="task-list">
             <!-- Example of task with progress, start date, and importance -->
@@ -244,20 +241,6 @@
                     <a class="delete" href="/todo/delete/2"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
-        </div>
-
-        <!-- Combined Add Task and Dropdown centered -->
-        <div class="new-task-form">
-            <form action="/todo/add/" method="post">
-                <select id="task-select" name="task">
-                    <option value="task1">Install and configure Docker</option>
-                    <option value="task2">Create a Docker file</option>
-                    <option value="task3">Create a Docker image</option>
-                    <option value="task4">Create an AWS Cloud account</option>
-                </select>
-
-                <input type="submit" value="Add Task" />
-            </form>
         </div>
     </div>
 
