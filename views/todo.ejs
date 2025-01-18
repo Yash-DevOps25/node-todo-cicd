@@ -4,106 +4,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List - TCS-ION Internship Project </title>
+    <title>To-Do List - 12 Factor App</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 40px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
             padding: 20px;
-            background-color: #f5f5f5;
         }
 
         h1 {
-            color: #333;
-            font-size: 24px;
+            color: #2c3e50;
+            font-size: 36px;
             margin-bottom: 20px;
+            text-align: center;
         }
 
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 15px;
-            font-size: 18px;
+        .task-list {
             display: flex;
-            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
         }
 
-        a {
-            margin-right: 10px;
+        .task-item {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .task-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .task-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .task-actions a {
             text-decoration: none;
-            font-size: 18px;
-            color: #e74c3c;
-        }
-
-        a.edit {
             color: #3498db;
+            margin-left: 10px;
+            font-size: 18px;
         }
 
-        a.delete {
+        .task-actions a.delete {
             color: #e74c3c;
         }
 
-        .completed {
+        .task-actions a:hover {
+            text-decoration: underline;
+        }
+
+        .task-description {
+            font-size: 18px;
+            margin-bottom: 15px;
+        }
+
+        .task-completed {
             text-decoration: line-through;
             color: #95a5a6;
         }
 
-        input[type="text"] {
-            width: 300px;
-            padding: 10px;
-            border-radius: 5px;
+        .new-task-form {
+            max-width: 600px;
+            margin: 20px auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .new-task-form input[type="text"] {
+            width: 80%;
+            padding: 12px;
+            font-size: 16px;
             border: 1px solid #ccc;
-            margin-right: 10px;
+            border-radius: 4px;
         }
 
-        input[type="submit"] {
-            padding: 10px 15px;
+        .new-task-form input[type="submit"] {
+            padding: 12px 18px;
+            font-size: 16px;
+            color: #fff;
             background-color: #2ecc71;
-            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
+            transition: background-color 0.3s ease;
         }
 
-        input[type="submit"]:hover {
+        .new-task-form input[type="submit"]:hover {
             background-color: #27ae60;
         }
 
-        label {
-            font-weight: bold;
-        }
     </style>
 </head>
 
 <body>
 
-    <h1>TCS-ION Internship Project To-DO List</h1>
+    <h1>12 Factor App - To-Do List</h1>
 
-    <!-- Display the list of tasks -->
-    <ul>
+    <!-- Display Task List -->
+    <div class="task-list">
         <% todolist.forEach(function(todo, index) { %>
-        <li>
-            <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> disabled />
-            <a class="delete" href="/todo/delete/<%= index %>">✘</a>
-            <a class="edit" href="/todo/edit/<%= index %>">✎</a>
-            <span class="<%= todo.completed ? 'completed' : '' %>">
+        <div class="task-item">
+            <div class="task-description <%= todo.completed ? 'task-completed' : '' %>">
                 <%- todo.description %>
-            </span>
-        </li>
-        <% }); %>
-    </ul>
+            </div>
 
-    <!-- Form to add a new task -->
-    <form action="/todo/add/" method="post">
-        <p>
-            <label for="newtodo">What should I do?</label>
-            <input type="text" name="newtodo" id="newtodo" autofocus />
-            <input type="submit" value="Add" />
-        </p>
-    </form>
+            <div class="task-actions">
+                <a href="/todo/edit/<%= index %>">✎</a>
+                <a class="delete" href="/todo/delete/<%= index %>">✘</a>
+            </div>
+        </div>
+        <% }); %>
+    </div>
+
+    <!-- Add New Task Form -->
+    <div class="new-task-form">
+        <form action="/todo/add/" method="post">
+            <input type="text" name="newtodo" placeholder="What should I do?" required />
+            <input type="submit" value="Add Task" />
+        </form>
+    </div>
 
 </body>
 
