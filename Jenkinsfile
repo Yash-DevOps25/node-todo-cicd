@@ -1,40 +1,50 @@
 pipeline {
     agent any
-
+    
     environment {
-        DOCKER_IMAGE = "node-todo-cicd-image"
-        DOCKER_REGISTRY = "docker.io"
-        DOCKER_REPO = "yashguj20" // Replace with your Docker Hub username
+        DOCKER_IMAGE = 'yashguj20/node-todo-cicd-image'
     }
 
     stages {
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
                 script {
-                    echo "Building the Docker image"
-                    sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/${DOCKER_IMAGE}:latest .'
+                    echo 'Building Docker image'
+                    sh 'docker build -t ${DOCKER_IMAGE}:latest .'
                 }
             }
         }
-
+        stage('Start Services with Docker Compose') {
+            steps {
+                script {
+                    echo 'Starting services using Docker Compose'
+                    sh 'docker-compose -f docker-compose.yml up -d'
+                }
+            }
+        }
+        stage('Run Tests') {
+            steps {
+                script {
+                    echo 'Running tests on the application'
+                    // You can run tests within the container if needed
+                    sh 'docker-compose exec web npm test'  // Example for a Node.js app in a "web" service
+                }
+            }
+        }
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    echo "Logging into Docker Hub"
-                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin'
-                    }
-                    echo "Pushing image to Docker Hub"
-                    sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/${DOCKER_IMAGE}:latest'
+                    echo 'Pushing image to Docker Hub'
+                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
+                    sh 'docker push ${DOCKER_IMAGE}:latest'
                 }
             }
         }
-
         stage('Deploy to EC2') {
             steps {
                 script {
-                    echo "Deploying to EC2"
-                    // Add your EC2 deployment commands here
+                    // Deploy to EC2 or another environment
+                    echo 'Deploying to EC2'
                 }
             }
         }
@@ -42,8 +52,9 @@ pipeline {
 
     post {
         always {
-            echo "Cleaning up"
-            sh 'docker system prune -f'
+            echo 'Cleaning up'
+            sh 'docker-compose down'  // Shut down the services after the pipeline is finished
+            cleanWs()  // Clean workspace
         }
     }
 }
