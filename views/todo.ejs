@@ -127,45 +127,34 @@
         .new-task-form {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 25px;
             margin-top: 40px;
+            align-items: center;
         }
 
-        .new-task-form label {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #34495e;
-        }
-
-        .new-task-form input[type="text"],
         .new-task-form select {
-            padding: 12px;
-            font-size: 1.1rem;
+            padding: 14px;
+            font-size: 1.2rem;
             border-radius: 8px;
             border: 1px solid #ccc;
             outline: none;
+            width: 80%;
         }
 
         .new-task-form input[type="submit"] {
-            padding: 12px 35px;
+            padding: 14px 40px;
             background-color: #2ecc71;
             border: none;
             border-radius: 8px;
             color: #fff;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             cursor: pointer;
+            width: 80%;
             transition: background-color 0.3s;
         }
 
         .new-task-form input[type="submit"]:hover {
             background-color: #27ae60;
-        }
-
-        .predefined-tasks {
-            margin-top: 30px;
-            background-color: #ecf0f1;
-            padding: 25px;
-            border-radius: 12px;
         }
 
         .footer {
@@ -257,10 +246,9 @@
             </div>
         </div>
 
-        <!-- Combined Add Task and Dropdown -->
+        <!-- Combined Add Task and Dropdown centered -->
         <div class="new-task-form">
             <form action="/todo/add/" method="post">
-                <label for="task-select">Select Predefined Task:</label>
                 <select id="task-select" name="task">
                     <option value="task1">Install and configure Docker</option>
                     <option value="task2">Create a Docker file</option>
@@ -268,16 +256,9 @@
                     <option value="task4">Create an AWS Cloud account</option>
                 </select>
 
-                <label for="custom-task">Or Add a Custom Task:</label>
-                <input type="text" id="custom-task" name="newtodo" placeholder="Type your custom task here" />
-
                 <input type="submit" value="Add Task" />
             </form>
         </div>
-    </div>
-
-    <div class="add-task-btn">
-        <i class="fas fa-plus"></i>
     </div>
 
     <div class="footer">
