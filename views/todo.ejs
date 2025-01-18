@@ -26,7 +26,7 @@
         }
 
         h1 {
-            font-size: 3rem; /* Increased font size */
+            font-size: 3rem;
             color: #34495e;
             margin-bottom: 20px;
             text-align: center;
@@ -35,36 +35,59 @@
 
         .logo-container {
             text-align: center;
-            margin-bottom: 30px; /* Added more space */
+            margin-bottom: 30px;
         }
 
         .logo-container img {
-            max-width: 180px; /* Increased logo size */
+            max-width: 180px;
             height: auto;
         }
 
         .todo-container {
             width: 100%;
-            max-width: 800px; /* Increased the container width */
+            max-width: 800px;
             background: #fff;
             border-radius: 12px;
-            padding: 50px; /* Increased padding */
+            padding: 50px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png');
-            background-position: top 10px right 20px;
-            background-size: 70px; /* Increased the pencil image size */
-            background-repeat: no-repeat;
+            background-color: #ffffff;
+            position: relative;
+        }
+
+        .todo-container::before,
+        .todo-container::after {
+            content: '';
+            position: absolute;
+            opacity: 0.1;
+        }
+
+        .todo-container::before {
+            background: url('https://cdn-icons-png.flaticon.com/512/1946/1946436.png') no-repeat;
+            background-size: 100px;
+            width: 100px;
+            height: 100px;
+            top: 20px;
+            right: 20px;
+        }
+
+        .todo-container::after {
+            background: url('https://cdn-icons-png.flaticon.com/512/3145/3145765.png') no-repeat;
+            background-size: 80px;
+            width: 80px;
+            height: 80px;
+            bottom: 20px;
+            left: 20px;
         }
 
         .task-list {
             display: flex;
             flex-direction: column;
-            gap: 20px; /* Added more space between tasks */
+            gap: 20px;
         }
 
         .task-item {
             background: #f1f1f1;
-            padding: 20px; /* Increased padding */
+            padding: 20px;
             border-radius: 10px;
             display: flex;
             justify-content: space-between;
@@ -73,7 +96,7 @@
         }
 
         .task-description {
-            font-size: 1.3rem; /* Increased font size */
+            font-size: 1.3rem;
         }
 
         .task-description.completed {
@@ -84,7 +107,7 @@
         .task-actions a {
             color: #3498db;
             text-decoration: none;
-            font-size: 1.5rem; /* Increased icon size */
+            font-size: 1.5rem;
         }
 
         .task-actions a.delete {
@@ -103,20 +126,20 @@
         }
 
         .new-task-form input[type="text"] {
-            padding: 15px; /* Increased padding */
+            padding: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            font-size: 1.2rem; /* Increased input font size */
+            font-size: 1.2rem;
             outline: none;
         }
 
         .new-task-form input[type="submit"] {
-            padding: 15px 40px; /* Increased button size */
+            padding: 15px 40px;
             background-color: #2ecc71;
             border: none;
             border-radius: 8px;
             color: #fff;
-            font-size: 1.2rem; /* Increased button font size */
+            font-size: 1.2rem;
             cursor: pointer;
         }
 
@@ -125,26 +148,26 @@
         }
 
         .predefined-tasks {
-            margin-top: 40px; /* Increased margin */
+            margin-top: 40px;
             background-color: #ecf0f1;
-            padding: 25px; /* Increased padding */
-            border-radius: 10px; /* Increased border radius */
+            padding: 25px;
+            border-radius: 10px;
         }
 
         .predefined-tasks .checkbox-item {
             display: flex;
             align-items: center;
-            font-size: 1.2rem; /* Increased checkbox font size */
-            margin-bottom: 15px; /* Added more space between checkboxes */
+            font-size: 1.2rem;
+            margin-bottom: 15px;
         }
 
         .checkbox-item label {
             margin-left: 12px;
-            font-size: 1.2rem; /* Increased label font size */
+            font-size: 1.2rem;
         }
 
         .footer {
-            margin-top: 40px; /* Increased margin for footer */
+            margin-top: 40px;
             text-align: center;
         }
 
