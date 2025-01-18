@@ -172,9 +172,9 @@
         }
 
         /* Centering login form */
-        .login-container {
+        .auth-container {
             max-width: 500px;
-            margin: 0 auto;
+            margin: 20px auto;
             background: rgba(255, 255, 255, 0.9);
             padding: 30px;
             border-radius: 8px;
@@ -190,7 +190,7 @@
             border-radius: 6px;
         }
 
-        .login-button {
+        .auth-button {
             background-color: #2ecc71;
             color: #fff;
             padding: 12px;
@@ -202,7 +202,7 @@
             transition: background-color 0.3s;
         }
 
-        .login-button:hover {
+        .auth-button:hover {
             background-color: #27ae60;
         }
 
@@ -211,13 +211,23 @@
 
 <body>
 
-    <!-- Login Container -->
-    <div class="login-container">
-        <h2>Login</h2>
-        <form action="/login" method="POST">
+    <!-- Sign Up Form -->
+    <div class="auth-container">
+        <h2>Sign Up</h2>
+        <form action="/signup" method="POST">
             <input type="text" name="username" class="input-field" placeholder="Username" required />
             <input type="password" name="password" class="input-field" placeholder="Password" required />
-            <button type="submit" class="login-button">Login</button>
+            <button type="submit" class="auth-button">Sign Up</button>
+        </form>
+    </div>
+
+    <!-- Sign In Form -->
+    <div class="auth-container">
+        <h2>Sign In</h2>
+        <form action="/signin" method="POST">
+            <input type="text" name="username" class="input-field" placeholder="Username" required />
+            <input type="password" name="password" class="input-field" placeholder="Password" required />
+            <button type="submit" class="auth-button">Sign In</button>
         </form>
     </div>
 
@@ -270,15 +280,6 @@
                 <input type="submit" value="Add Task" />
             </form>
         </div>
-    </div>
-
-    <!-- Add Member Form -->
-    <div class="new-task-form">
-        <form action="/add-member" method="POST">
-            <input type="text" name="username" placeholder="Username" required />
-            <input type="password" name="password" placeholder="Password" required />
-            <input type="submit" value="Add Member" />
-        </form>
     </div>
 
     <div class="footer">
