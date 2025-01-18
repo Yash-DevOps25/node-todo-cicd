@@ -130,6 +130,8 @@
             gap: 25px;
             margin-top: 40px;
             align-items: center;
+            width: 100%;
+            max-width: 500px;
         }
 
         .new-task-form select,
@@ -139,7 +141,8 @@
             border-radius: 8px;
             border: 1px solid #ccc;
             outline: none;
-            width: 80%;
+            width: 100%;
+            max-width: 100%;
         }
 
         .new-task-form input[type="submit"] {
@@ -150,7 +153,8 @@
             color: #fff;
             font-size: 1.3rem;
             cursor: pointer;
-            width: 80%;
+            width: 100%;
+            max-width: 100%;
             transition: background-color 0.3s;
         }
 
@@ -214,6 +218,23 @@
 
     <h1>12 Factor App - To-Do List</h1>
 
+    <!-- New task form at the top, centered -->
+    <div class="new-task-form">
+        <form action="/todo/add/" method="post">
+            <select id="task-select" name="task">
+                <option value="task1">Install and configure Docker</option>
+                <option value="task2">Create a Docker file</option>
+                <option value="task3">Create a Docker image</option>
+                <option value="task4">Create an AWS Cloud account</option>
+            </select>
+
+            <!-- Custom Task Input -->
+            <input type="text" name="custom-task" placeholder="Enter a custom task" />
+
+            <input type="submit" value="Add Task" />
+        </form>
+    </div>
+
     <div class="todo-container">
         <div class="task-list">
             <!-- Example of task with progress, start date, and importance -->
@@ -245,23 +266,6 @@
                     <a class="delete" href="/todo/delete/2"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
-        </div>
-
-        <!-- Combined Add Task and Dropdown with Custom Task -->
-        <div class="new-task-form">
-            <form action="/todo/add/" method="post">
-                <select id="task-select" name="task">
-                    <option value="task1">Install and configure Docker</option>
-                    <option value="task2">Create a Docker file</option>
-                    <option value="task3">Create a Docker image</option>
-                    <option value="task4">Create an AWS Cloud account</option>
-                </select>
-
-                <!-- Custom Task Input -->
-                <input type="text" name="custom-task" placeholder="Enter a custom task" />
-
-                <input type="submit" value="Add Task" />
-            </form>
         </div>
     </div>
 
