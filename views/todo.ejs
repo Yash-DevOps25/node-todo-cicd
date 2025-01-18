@@ -33,6 +33,16 @@
             font-weight: 600;
         }
 
+        .logo-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-container img {
+            max-width: 150px;
+            height: auto;
+        }
+
         .todo-container {
             width: 100%;
             max-width: 700px;
@@ -152,6 +162,11 @@
 </head>
 
 <body>
+
+    <div class="logo-container">
+        <img src="https://evessio.s3.amazonaws.com/customer/f6ac7efa-3821-45db-b7e9-604a1025db1f/event/d3d85cc9-ac6d-456d-8352-454ef5ba5451/media/309157e4-profile_TCS-logo-1024x768-1-optimized.jpg_Large.webp" alt="TCS-iON Logo">
+    </div>
+
     <h1>12 Factor App - To-Do List</h1>
 
     <div class="todo-container">
@@ -189,12 +204,17 @@
                 <input type="checkbox" id="task3" name="task3" />
                 <label for="task3">Create a Docker image</label>
             </div>
+            <div class="checkbox-item">
+                <input type="checkbox" id="task4" name="task4" />
+                <label for="task4">Create an AWS Cloud account</label>
+            </div>
         </div>
     </div>
 
     <div class="footer">
         <p>&copy; 2025 To-Do List App | Created by Your Team</p>
     </div>
+
 </body>
 
 </html>
