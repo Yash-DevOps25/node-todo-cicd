@@ -50,10 +50,6 @@
             border-radius: 12px;
             padding: 50px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png');
-            background-position: top 10px right 20px;
-            background-size: 70px;
-            background-repeat: no-repeat;
         }
 
         .task-list {
@@ -105,7 +101,9 @@
         }
 
         .new-task-form input[type="text"],
-        .new-task-form select {
+        .new-task-form select,
+        .new-task-form input[type="date"],
+        .new-task-form input[type="number"] {
             padding: 15px;
             border: 1px solid #ccc;
             border-radius: 8px;
@@ -129,25 +127,6 @@
 
         .new-task-form input[type="submit"]:hover {
             background-color: #27ae60;
-        }
-
-        .predefined-tasks {
-            margin-top: 40px;
-            background-color: #ecf0f1;
-            padding: 25px;
-            border-radius: 10px;
-        }
-
-        .predefined-tasks .checkbox-item {
-            display: flex;
-            align-items: center;
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-        }
-
-        .checkbox-item label {
-            margin-left: 12px;
-            font-size: 1.2rem;
         }
 
         .footer {
@@ -189,7 +168,7 @@
                     <%- todo.description %>
                     <br>
                     <small><strong>Start Date:</strong> <%= todo.startDate %></small><br>
-                    <small><strong>Progress:</strong> <%= todo.progress %></small>
+                    <small><strong>Progress:</strong> <%= todo.progress %>%</small>
                 </div>
                 <div class="task-actions">
                     <a href="/todo/edit/<%= index %>"><i class="fas fa-edit"></i></a>
@@ -213,25 +192,6 @@
                 <input type="checkbox" name="important" />
                 <input type="submit" value="Add Task" />
             </form>
-        </div>
-
-        <div class="predefined-tasks">
-            <div class="checkbox-item">
-                <input type="checkbox" id="task1" name="task1" />
-                <label for="task1">Install and configure Docker</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="task2" name="task2" />
-                <label for="task2">Create a Docker file</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="task3" name="task3" />
-                <label for="task3">Create a Docker image</label>
-            </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="task4" name="task4" />
-                <label for="task4">Create an AWS Cloud account</label>
-            </div>
         </div>
     </div>
 
