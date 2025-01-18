@@ -50,33 +50,6 @@
             border-radius: 12px;
             padding: 50px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
-            position: relative;
-        }
-
-        .todo-container::before,
-        .todo-container::after {
-            content: '';
-            position: absolute;
-            opacity: 0.1;
-        }
-
-        .todo-container::before {
-            background: url('https://cdn-icons-png.flaticon.com/512/1946/1946436.png') no-repeat;
-            background-size: 100px;
-            width: 100px;
-            height: 100px;
-            top: 20px;
-            right: 20px;
-        }
-
-        .todo-container::after {
-            background: url('https://cdn-icons-png.flaticon.com/512/3145/3145765.png') no-repeat;
-            background-size: 80px;
-            width: 80px;
-            height: 80px;
-            bottom: 20px;
-            left: 20px;
         }
 
         .task-list {
@@ -93,6 +66,17 @@
             justify-content: space-between;
             align-items: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+        }
+
+        .task-item.completed {
+            background-color: #dff0d8; /* Light green for completed tasks */
+            border-left: 5px solid #28a745;
+        }
+
+        .task-item.pending {
+            background-color: #f8d7da; /* Light red for pending tasks */
+            border-left: 5px solid #dc3545;
         }
 
         .task-description {
@@ -193,23 +177,13 @@
     <h1>12 Factor App - To-Do List</h1>
 
     <div class="todo-container">
-        <div class="task-list">
-            <% todolist.forEach(function(todo, index) { %>
-            <div class="task-item">
-                <div class="task-description <%= todo.completed ? 'completed' : '' %>">
-                    <%- todo.description %>
-                </div>
-                <div class="task-actions">
-                    <a href="/todo/edit/<%= index %>"><i class="fas fa-edit"></i></a>
-                    <a class="delete" href="/todo/delete/<%= index %>"><i class="fas fa-trash"></i></a>
-                </div>
-            </div>
-            <% }); %>
+        <div class="task-list" id="taskList">
+            <!-- Tasks will be added here dynamically -->
         </div>
 
         <div class="new-task-form">
-            <form action="/todo/add/" method="post">
-                <input type="text" name="newtodo" placeholder="Add a new task" required />
+            <form id="taskForm">
+                <input type="text" id="newTask" placeholder="Add a new task" required />
                 <input type="submit" value="Add Task" />
             </form>
         </div>
@@ -237,6 +211,59 @@
     <div class="footer">
         <p>&copy; 2025 To-Do List App | Created by Your Team</p>
     </div>
+
+    <script>
+        const taskForm = document.getElementById('taskForm');
+        const taskList = document.getElementById('taskList');
+
+        taskForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const newTask = document.getElementById('newTask').value;
+            addTask(newTask);
+            document.getElementById('newTask').value = ''; // Clear the input field
+            alert('Task added successfully!');
+        });
+
+        function addTask(taskDescription) {
+            const taskItem = document.createElement('div');
+            taskItem.classList.add('task-item', 'pending');
+
+            const taskText = document.createElement('div');
+            taskText.classList.add('task-description');
+            taskText.textContent = taskDescription;
+
+            taskText.addEventListener('click', function () {
+                toggleTaskCompletion(taskItem, taskText);
+            });
+
+            const taskActions = document.createElement('div');
+            taskActions.classList.add('task-actions');
+
+            const deleteIcon = document.createElement('a');
+            deleteIcon.classList.add('delete');
+            deleteIcon.innerHTML = '<i class="fas fa-trash"></i>';
+            deleteIcon.addEventListener('click', function () {
+                taskItem.remove();
+            });
+
+            taskActions.appendChild(deleteIcon);
+            taskItem.appendChild(taskText);
+            taskItem.appendChild(taskActions);
+            taskList.appendChild(taskItem);
+        }
+
+        function toggleTaskCompletion(taskItem, taskText) {
+            if (taskItem.classList.contains('completed')) {
+                taskItem.classList.remove('completed');
+                taskItem.classList.add('pending');
+                taskText.classList.remove('completed');
+            } else {
+                taskItem.classList.remove('pending');
+                taskItem.classList.add('completed');
+                taskText.classList.add('completed');
+            }
+        }
+    </script>
 
 </body>
 
