@@ -33,6 +33,10 @@
             text-align: center;
             letter-spacing: 2px;
             text-transform: uppercase;
+            border-bottom: 2px solid #2980b9;
+            padding-bottom: 15px;
+            width: 100%;
+            text-align: center;
         }
 
         .task-list {
@@ -136,6 +140,7 @@
             background-color: #27ae60;
         }
 
+        /* Animation for task completion checkboxes */
         .checkbox-list {
             width: 100%;
             max-width: 600px;
@@ -162,12 +167,6 @@
             font-weight: 500;
         }
 
-        /* Animation for the checkbox items */
-        .checkbox-item input[type="checkbox"]:checked + label {
-            color: #2ecc71;
-            font-weight: 600;
-        }
-
         /* Adding subtle shadow effect for better aesthetics */
         .checkbox-item:hover {
             transform: translateY(-3px);
@@ -175,8 +174,22 @@
         }
 
         /* Style for Completed Task in Checkbox List */
+        .checkbox-item input[type="checkbox"]:checked + label {
+            color: #2ecc71;
+            font-weight: 600;
+        }
+
         .checkbox-item input[type="checkbox"]:checked {
             background-color: #2ecc71;
+        }
+
+        /* Stylish divider between sections */
+        .section-divider {
+            margin-top: 50px;
+            width: 100%;
+            max-width: 600px;
+            border-top: 2px solid #2980b9;
+            margin-bottom: 50px;
         }
     </style>
 </head>
@@ -201,6 +214,8 @@
         <% }); %>
     </div>
 
+    <div class="section-divider"></div>
+
     <!-- Predefined Tasks with Checkboxes -->
     <div class="checkbox-list">
         <div class="checkbox-item">
@@ -220,6 +235,8 @@
             <label for="task4">Create an AWS Cloud account</label>
         </div>
     </div>
+
+    <div class="section-divider"></div>
 
     <!-- Add New Task Form -->
     <div class="new-task-form">
