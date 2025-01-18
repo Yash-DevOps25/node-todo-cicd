@@ -131,17 +131,16 @@
             margin-top: 40px;
         }
 
-        .new-task-form input[type="text"] {
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 1.2rem;
-            outline: none;
+        .new-task-form label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #34495e;
         }
 
+        .new-task-form input[type="text"],
         .new-task-form select {
             padding: 12px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-radius: 8px;
             border: 1px solid #ccc;
             outline: none;
@@ -155,6 +154,7 @@
             color: #fff;
             font-size: 1.2rem;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
 
         .new-task-form input[type="submit"]:hover {
@@ -260,20 +260,16 @@
         <!-- Combined Add Task and Dropdown -->
         <div class="new-task-form">
             <form action="/todo/add/" method="post">
-                <div>
-                    <label for="task-select">Select Predefined Task:</label>
-                    <select id="task-select" name="task">
-                        <option value="task1">Install and configure Docker</option>
-                        <option value="task2">Create a Docker file</option>
-                        <option value="task3">Create a Docker image</option>
-                        <option value="task4">Create an AWS Cloud account</option>
-                    </select>
-                </div>
+                <label for="task-select">Select Predefined Task:</label>
+                <select id="task-select" name="task">
+                    <option value="task1">Install and configure Docker</option>
+                    <option value="task2">Create a Docker file</option>
+                    <option value="task3">Create a Docker image</option>
+                    <option value="task4">Create an AWS Cloud account</option>
+                </select>
 
-                <div>
-                    <label for="custom-task">Or Add a Custom Task:</label>
-                    <input type="text" id="custom-task" name="newtodo" placeholder="Type your custom task here" />
-                </div>
+                <label for="custom-task">Or Add a Custom Task:</label>
+                <input type="text" id="custom-task" name="newtodo" placeholder="Type your custom task here" />
 
                 <input type="submit" value="Add Task" />
             </form>
