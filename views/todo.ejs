@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do List - TCS-ION PROJECT TO-DO LIST</title>
+    <title>To-Do List - TCS-ION Internship Project </title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -80,7 +80,7 @@
 
 <body>
 
-    <h1>12 Factor App - To-Do List</h1>
+    <h1>TCS-ION Internship Project To-DO List</h1>
 
     <!-- Display the list of tasks -->
     <ul>
@@ -88,7 +88,7 @@
         <li>
             <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> disabled />
             <a class="delete" href="/todo/delete/<%= index %>">✘</a>
-            <a class="edit" href="/todo/<%= index %>">✎</a>
+            <a class="edit" href="/todo/edit/<%= index %>">✎</a>
             <span class="<%= todo.completed ? 'completed' : '' %>">
                 <%- todo.description %>
             </span>
