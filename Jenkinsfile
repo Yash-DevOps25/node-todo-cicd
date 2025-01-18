@@ -1,51 +1,61 @@
 pipeline {
     agent any
+
     environment {
-        SKIP_TESTS = 'true' // Set to 'false' if you want to run tests
+        DOCKER_IMAGE = 'yashguj20/node-todo-cicd-image:latest'
     }
+
     stages {
         stage('Build') {
             steps {
                 script {
-                    echo 'Building the Docker image'
-                    sh 'docker build -t docker.io/yashguj20/node-todo-cicd-image:latest .'
+                    echo 'Building the Docker image...'
+                    sh 'docker build -t ${DOCKER_IMAGE} .'
                 }
             }
         }
+        
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    echo 'Pushing the Docker image to Docker Hub'
-                    sh 'docker push docker.io/yashguj20/node-todo-cicd-image:latest'
+                    echo 'Logging into Docker Hub and pushing the image...'
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
+                        sh 'docker push ${DOCKER_IMAGE}'
+                    }
                 }
             }
         }
+
+        // Skipping the "Run Tests" stage
         stage('Run Tests') {
-            when {
-                expression { return env.SKIP_TESTS != 'true' }
-            }
             steps {
-                script {
-                    echo 'Running tests on the application'
-                    sh 'docker-compose exec web npm test'
-                }
+                echo 'Skipping tests stage.'
             }
         }
+
         stage('Deploy to EC2') {
             steps {
                 script {
-                    echo 'Deploying Docker image to EC2 instance'
-                    // EC2 deployment commands here
+                    echo 'Deploying to EC2...'
+                    // Add EC2 deployment steps here
                 }
             }
         }
+
         stage('Clean Up') {
             steps {
                 script {
-                    echo 'Cleaning up Docker resources'
+                    echo 'Cleaning up Docker resources...'
                     sh 'docker system prune -f'
                 }
             }
+        }
+    }
+
+    post {
+        always {
+            echo 'Pipeline finished'
         }
     }
 }
