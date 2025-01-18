@@ -1,0 +1,24 @@
+version: '3'
+services:
+  web:
+    image: yashguj20/node-todo-cicd-image:latest
+    container_name: todo-app
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    networks:
+      - app-network
+    command: ["node", "app.js"]
+
+  mongo:
+    image: mongo:latest
+    container_name: todo-db
+    ports:
+      - "27017:27017"
+    networks:
+      - app-network
+  
+networks:
+  app-network:
+    driver: bridge
