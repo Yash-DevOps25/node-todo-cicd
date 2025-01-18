@@ -7,6 +7,7 @@
     <title>To-Do List - 12 Factor App</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -16,7 +17,6 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(to right, #00c6ff, #0072ff);
             color: #fff;
             padding: 40px;
             display: flex;
@@ -24,6 +24,7 @@
             justify-content: flex-start;
             align-items: center;
             min-height: 100vh;
+            position: relative;
         }
 
         h1 {
@@ -50,7 +51,7 @@
         .todo-container {
             width: 100%;
             max-width: 800px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 12px;
             padding: 30px;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
@@ -225,7 +226,9 @@
 
     <h1>12 Factor App - To-Do List</h1>
 
-    <!-- New task form at the top, centered -->
+    <!-- Lottie Animation (To-Do list background) -->
+    <div id="lottie-animation"></div>
+
     <div class="new-task-form">
         <form action="/todo/add/" method="post">
             <select id="task-select" name="task">
@@ -277,12 +280,19 @@
     </div>
 
     <div class="footer">
-        TCS-iON Remote Internship Program © 2025
+        <p>&copy; 2025 To-Do List App | Created by Your Team</p>
     </div>
 
-    <div class="add-task-btn">
-        <i class="fas fa-plus"></i>
-    </div>
+    <script>
+        // Load Lottie Animation
+        var animation = lottie.loadAnimation({
+            container: document.getElementById('lottie-animation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'https://assets10.lottiefiles.com/packages/lf20_ipb1lxj7.json' // Lottie animation JSON URL
+        });
+    </script>
 
 </body>
 
