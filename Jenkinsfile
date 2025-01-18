@@ -1,40 +1,40 @@
 pipeline {
     agent any
-    
+
     environment {
-        DOCKER_IMAGE = 'yashguj20/node-todo-cicd-image'
-        MAVEN_HOME = tool name: 'Maven3', type: 'ToolLocation'
+        DOCKER_IMAGE = "node-todo-cicd-image"
+        DOCKER_REGISTRY = "docker.io"
+        DOCKER_REPO = "yashguj20" // Replace with your Docker Hub username
     }
 
     stages {
         stage('Build') {
             steps {
                 script {
-                    // Node.js build (for example)
-                    sh 'docker build -t ${DOCKER_IMAGE}:latest .'
+                    echo "Building the Docker image"
+                    sh 'docker build -t ${DOCKER_REGISTRY}/${DOCKER_REPO}/${DOCKER_IMAGE}:latest .'
                 }
             }
         }
-        stage('Maven Build') {
-            steps {
-                script {
-                    // Assuming you're using Maven to build a Java project
-                    sh '"${MAVEN_HOME}/bin/mvn" clean install'
-                }
-            }
-        }
+
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    sh 'docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD'
-                    sh 'docker push ${DOCKER_IMAGE}:latest'
+                    echo "Logging into Docker Hub"
+                    withCredentials([usernamePassword(credentialsId: 'docker-hub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USER --password-stdin'
+                    }
+                    echo "Pushing image to Docker Hub"
+                    sh 'docker push ${DOCKER_REGISTRY}/${DOCKER_REPO}/${DOCKER_IMAGE}:latest'
                 }
             }
         }
+
         stage('Deploy to EC2') {
             steps {
                 script {
-                    // Your EC2 deployment steps
+                    echo "Deploying to EC2"
+                    // Add your EC2 deployment commands here
                 }
             }
         }
@@ -42,7 +42,8 @@ pipeline {
 
     post {
         always {
-            cleanWs()  // Clean workspace after the build
+            echo "Cleaning up"
+            sh 'docker system prune -f'
         }
     }
 }
