@@ -16,9 +16,9 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f8f9fa;
+            background: #f0f1f6;
             color: #333;
-            padding: 50px 15px;
+            padding: 40px 15px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -31,6 +31,7 @@
             margin-bottom: 20px;
             text-align: center;
             font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .header-logo {
@@ -136,17 +137,18 @@
 
         .new-task-form input[type="submit"] {
             padding: 15px 30px;
-            background: #2ecc71;
+            background: linear-gradient(135deg, #2ecc71, #27ae60);
             color: white;
             border: none;
             border-radius: 8px;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .new-task-form input[type="submit"]:hover {
             background-color: #27ae60;
+            transform: translateY(-2px);
         }
 
         .divider {
@@ -187,6 +189,16 @@
         .checkbox-item:hover {
             transform: translateY(-3px);
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .footer p {
+            color: #7f8c8d;
+            font-size: 1rem;
         }
 
         @media (max-width: 768px) {
@@ -267,6 +279,10 @@
                 <input type="submit" value="Add Task" />
             </form>
         </div>
+    </div>
+
+    <div class="footer">
+        <p>Powered by TCS-iON | 12 Factor App</p>
     </div>
 
 </body>
