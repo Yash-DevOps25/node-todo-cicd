@@ -8,12 +8,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
+        /* CSS Reset */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        /* Body Styles */
         body {
             font-family: 'Poppins', sans-serif;
             background: #f9f9f9;
@@ -21,18 +23,19 @@
             padding: 40px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
 
+        /* Header Styles */
         h1 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             color: #34495e;
             margin-bottom: 20px;
             text-align: center;
             font-weight: 600;
         }
 
+        /* Logo Container */
         .logo-container {
             text-align: center;
             margin-bottom: 30px;
@@ -43,25 +46,18 @@
             height: auto;
         }
 
+        /* Main Todo Container */
         .todo-container {
             width: 100%;
             max-width: 800px;
             background: #fff;
             border-radius: 15px;
-            padding: 50px;
+            padding: 40px;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png');
-            background-position: top 10px right 20px;
-            background-size: 70px;
-            background-repeat: no-repeat;
             transition: all 0.3s ease-in-out;
         }
 
-        .todo-container:hover {
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
-            transform: scale(1.02);
-        }
-
+        /* Task List Styles */
         .task-list {
             display: flex;
             flex-direction: column;
@@ -70,7 +66,7 @@
 
         .task-item {
             background: #f1f1f1;
-            padding: 20px;
+            padding: 15px;
             border-radius: 12px;
             display: flex;
             justify-content: space-between;
@@ -85,7 +81,9 @@
         }
 
         .task-description {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
+            flex-grow: 1;
+            margin-right: 10px;
         }
 
         .task-description.completed {
@@ -97,20 +95,18 @@
             color: #3498db;
             text-decoration: none;
             font-size: 1.5rem;
+            margin-left: 10px;
         }
 
         .task-actions a.delete {
             color: #e74c3c;
         }
 
-        .task-actions a.edit:hover {
-            color: #f39c12;
-        }
-
+        /* New Task Form Styles */
         .new-task-form {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
             margin-top: 30px;
         }
 
@@ -120,7 +116,7 @@
             border-radius: 10px;
             font-size: 1.2rem;
             outline: none;
-            transition: all 0.3s ease-in-out;
+            transition: border-color 0.3s ease-in-out;
         }
 
         .new-task-form input[type="text"]:focus {
@@ -128,7 +124,7 @@
         }
 
         .new-task-form input[type="submit"] {
-            padding: 15px 40px;
+            padding: 15px 30px;
             background-color: #2ecc71;
             border: none;
             border-radius: 8px;
@@ -143,35 +139,37 @@
             transform: scale(1.05);
         }
 
+        /* Predefined Tasks Styles */
         .predefined-tasks {
             margin-top: 40px;
             background-color: #ecf0f1;
-            padding: 25px;
+            padding: 20px;
             border-radius: 12px;
         }
 
-        .predefined-tasks .checkbox-item {
+        .checkbox-item {
             display: flex;
             align-items: center;
             font-size: 1.2rem;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .checkbox-item label {
-            margin-left: 12px;
-            font-size: 1.2rem;
+            margin-left: 10px;
         }
 
+        /* Footer Styles */
         .footer {
             margin-top: 40px;
             text-align: center;
         }
 
         .footer p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: #7f8c8d;
         }
 
+        /* Floating Action Button */
         .add-task-btn {
             position: fixed;
             bottom: 20px;
@@ -195,6 +193,7 @@
             transform: scale(1.1);
         }
 
+        /* Media Queries */
         @media (max-width: 768px) {
             .todo-container {
                 padding: 30px;
@@ -224,12 +223,13 @@
         <div class="task-list">
             <% todolist.forEach(function(todo, index) { %>
             <div class="task-item">
+                <input type="checkbox" id="task-<%= index %>" <%= todo.completed ? 'checked' : '' %> onchange="toggleCompletion(<%= index %>)">
                 <div class="task-description <%= todo.completed ? 'completed' : '' %>">
                     <%- todo.description %>
                 </div>
                 <div class="task-actions">
-                    <a href="/todo/edit/<%= index %>"><i class="fas fa-pencil-alt"></i></a>
-                    <a class="delete" href="/todo/delete/<%= index %>"><i class="fas fa-trash"></i></a>
+                    <a href="/todo/edit/<%= index %>" aria-label="Edit task"><i class="fas fa-pencil-alt"></i></a>
+                    <a class="delete" href="/todo/delete/<%= index %>" aria-label="Delete task"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
             <% }); %>
@@ -243,6 +243,7 @@
         </div>
 
         <div class="predefined-tasks">
+            <h2>Predefined Tasks</h2>
             <div class="checkbox-item">
                 <input type="checkbox" id="task1" name="task1" />
                 <label for="task1">Install and configure Docker</label>
@@ -262,13 +263,24 @@
         </div>
     </div>
 
-    <div class="add-task-btn">
+    <div class="add-task-btn" aria-label="Add new task">
         <i class="fas fa-plus"></i>
     </div>
 
     <div class="footer">
-        <p>&copy; 2025 To-Do List App | Created by Your Team</p>
+        <p>&copy; <span id="currentYear"></span> To-Do List App | Created by Your Team</p>
     </div>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // Function to toggle task completion
+        function toggleCompletion(index) {
+            // Implement AJAX call or form submission to update task completion status
+            console.log('Toggle completion for task:', index);
+        }
+    </script>
 
 </body>
 
