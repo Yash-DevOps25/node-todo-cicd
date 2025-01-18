@@ -16,21 +16,23 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f9f9f9;
-            color: #333;
+            background: linear-gradient(to right, #00c6ff, #0072ff);
+            color: #fff;
             padding: 40px;
             display: flex;
             flex-direction: column;
             justify-content: flex-start;
             align-items: center;
+            min-height: 100vh;
         }
 
         h1 {
             font-size: 2.5rem;
-            color: #34495e;
+            color: #fff;
             margin-bottom: 30px;
             text-align: center;
-            font-weight: 600;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         .logo-container {
@@ -41,16 +43,19 @@
         .logo-container img {
             max-width: 180px;
             height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         .todo-container {
             width: 100%;
             max-width: 800px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 12px;
             padding: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
             margin-bottom: 30px;
+            backdrop-filter: blur(8px);
         }
 
         .task-list {
@@ -60,7 +65,7 @@
         }
 
         .task-item {
-            background: #f1f1f1;
+            background: rgba(255, 255, 255, 0.2);
             padding: 20px;
             border-radius: 12px;
             display: flex;
@@ -68,10 +73,11 @@
             gap: 10px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            color: #fff;
         }
 
         .task-item:hover {
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .task-item.important {
@@ -100,7 +106,7 @@
 
         .task-start-date {
             font-size: 1rem;
-            color: #7f8c8d;
+            color: #ecf0f1;
             margin-top: 5px;
         }
 
@@ -139,10 +145,11 @@
             padding: 14px;
             font-size: 1.2rem;
             border-radius: 8px;
-            border: 1px solid #ccc;
+            border: none;
             outline: none;
             width: 100%;
             max-width: 100%;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
         }
 
         .new-task-form input[type="submit"] {
@@ -166,7 +173,7 @@
             margin-top: 40px;
             text-align: center;
             font-size: 1rem;
-            color: #7f8c8d;
+            color: #ecf0f1;
         }
 
         .add-task-btn {
@@ -270,7 +277,11 @@
     </div>
 
     <div class="footer">
-        <p>&copy; 2025 To-Do List App | Created by Your Team</p>
+        TCS-iON Remote Internship Program © 2025
+    </div>
+
+    <div class="add-task-btn">
+        <i class="fas fa-plus"></i>
     </div>
 
 </body>
