@@ -253,4 +253,22 @@
                 <label for="task3">Create a Docker image</label>
             </div>
             <div class="checkbox-item">
-  
+                <input type="checkbox" id="task4" name="task4" />
+                <label for="task4">Create an AWS Cloud account</label>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Add New Task Form -->
+        <div class="new-task-form">
+            <form action="/todo/add/" method="post">
+                <input type="text" name="newtodo" placeholder="What should I do? Add a new task..." required />
+                <input type="submit" value="Add Task" />
+            </form>
+        </div>
+    </div>
+
+</body>
+
+</html>
