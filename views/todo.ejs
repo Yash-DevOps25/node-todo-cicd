@@ -16,106 +16,69 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: #f4f5f7;
+            background: #f9f9f9;
             color: #333;
-            padding: 50px 15px;
+            padding: 40px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
         }
 
         h1 {
             font-size: 2.5rem;
-            color: #2c3e50;
+            color: #34495e;
             margin-bottom: 20px;
             text-align: center;
             font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .header-logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .header-logo img {
-            max-width: 150px;
-            height: auto;
-            margin-bottom: 20px;
         }
 
         .todo-container {
             width: 100%;
-            max-width: 900px;
+            max-width: 700px;
             background: #fff;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
             padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            background-image: url('https://cdn-icons-png.flaticon.com/512/158/158747.png'); /* Notepad icon */
-            background-position: top 30px right 30px;
-            background-size: 150px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            background-image: url('https://cdn-icons-png.flaticon.com/512/29/29302.png'); /* Pencil image */
+            background-position: top 10px right 20px;
+            background-size: 60px;
             background-repeat: no-repeat;
         }
 
         .task-list {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
 
         .task-item {
-            background: #f9f9f9;
+            background: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .task-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .task-description {
-            font-size: 1.2rem;
-            color: #333;
+            font-size: 1.1rem;
         }
 
         .task-description.completed {
             text-decoration: line-through;
-            color: #95a5a6;
-        }
-
-        .task-actions {
-            display: flex;
-            gap: 15px;
+            color: #7f8c8d;
         }
 
         .task-actions a {
             color: #3498db;
             text-decoration: none;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        .task-actions a:hover {
-            color: #2980b9;
+            font-size: 1.3rem;
         }
 
         .task-actions a.delete {
             color: #e74c3c;
-        }
-
-        .task-actions a.delete:hover {
-            color: #c0392b;
         }
 
         .task-actions a.edit:hover {
@@ -126,137 +89,93 @@
             display: flex;
             flex-direction: column;
             gap: 20px;
+            margin-top: 30px;
         }
 
         .new-task-form input[type="text"] {
-            padding: 15px;
-            font-size: 1rem;
-            border: 2px solid #ecf0f1;
+            padding: 12px;
+            border: 1px solid #ccc;
             border-radius: 8px;
+            font-size: 1rem;
             outline: none;
-            transition: border-color 0.3s ease;
-        }
-
-        .new-task-form input[type="text"]:focus {
-            border-color: #3498db;
         }
 
         .new-task-form input[type="submit"] {
-            padding: 15px 30px;
-            background: linear-gradient(135deg, #2ecc71, #27ae60);
-            color: white;
+            padding: 12px 30px;
+            background-color: #2ecc71;
             border: none;
             border-radius: 8px;
+            color: #fff;
             font-size: 1rem;
             cursor: pointer;
-            transition: background-color 0.3s ease, transform 0.3s ease;
         }
 
         .new-task-form input[type="submit"]:hover {
             background-color: #27ae60;
-            transform: translateY(-2px);
-        }
-
-        .divider {
-            margin: 50px 0;
-            border-top: 2px solid #2980b9;
         }
 
         .predefined-tasks {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            margin-top: 30px;
+            background-color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
         }
 
-        .checkbox-item {
+        .predefined-tasks .checkbox-item {
             display: flex;
             align-items: center;
             font-size: 1rem;
-            color: #34495e;
-            font-weight: 400;
-        }
-
-        .checkbox-item input {
-            margin-right: 10px;
-            transform: scale(1.2);
-        }
-
-        .checkbox-item input[type="checkbox"]:checked + label {
-            color: #27ae60;
-            font-weight: bold;
+            margin-bottom: 10px;
         }
 
         .checkbox-item label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            cursor: pointer;
-        }
-
-        .checkbox-item:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .footer {
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        .footer p {
-            color: #7f8c8d;
+            margin-left: 10px;
             font-size: 1rem;
         }
 
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer p {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-
             .todo-container {
-                width: 90%;
-            }
-
-            .new-task-form input[type="text"] {
-                font-size: 1rem;
-            }
-
-            .task-actions a {
-                font-size: 1.2rem;
+                padding: 20px;
             }
         }
     </style>
 </head>
 
 <body>
-
-    <!-- TCS-iON Logo -->
-    <div class="header-logo">
-        <img src="https://evessio.s3.amazonaws.com/customer/f6ac7efa-3821-45db-b7e9-604a1025db1f/event/d3d85cc9-ac6d-456d-8352-454ef5ba5451/media/309157e4-profile_TCS-logo-1024x768-1-optimized.jpg_Large.webp"
-             alt="TCS-iON">
-    </div>
-
     <h1>12 Factor App - To-Do List</h1>
 
     <div class="todo-container">
-        <!-- Task List -->
         <div class="task-list">
             <% todolist.forEach(function(todo, index) { %>
             <div class="task-item">
                 <div class="task-description <%= todo.completed ? 'completed' : '' %>">
                     <%- todo.description %>
                 </div>
-
                 <div class="task-actions">
-                    <a class="edit" href="/todo/edit/<%= index %>"><i class="fas fa-edit"></i></a>
+                    <a href="/todo/edit/<%= index %>"><i class="fas fa-edit"></i></a>
                     <a class="delete" href="/todo/delete/<%= index %>"><i class="fas fa-trash"></i></a>
                 </div>
             </div>
             <% }); %>
         </div>
 
-        <div class="divider"></div>
+        <div class="new-task-form">
+            <form action="/todo/add/" method="post">
+                <input type="text" name="newtodo" placeholder="Add a new task" required />
+                <input type="submit" value="Add Task" />
+            </form>
+        </div>
 
-        <!-- Predefined Tasks with Checkboxes -->
         <div class="predefined-tasks">
             <div class="checkbox-item">
                 <input type="checkbox" id="task1" name="task1" />
@@ -270,16 +189,12 @@
                 <input type="checkbox" id="task3" name="task3" />
                 <label for="task3">Create a Docker image</label>
             </div>
-            <div class="checkbox-item">
-                <input type="checkbox" id="task4" name="task4" />
-                <label for="task4">Create an AWS Cloud account</label>
-            </div>
         </div>
+    </div>
 
-        <div class="divider"></div>
+    <div class="footer">
+        <p>&copy; 2025 To-Do List App | Created by Your Team</p>
+    </div>
+</body>
 
-        <!-- Add New Task Form -->
-        <div class="new-task-form">
-            <form action="/todo/add/" method="post">
-                <input type="text" name="newtodo" placeholder="What should I do? Add a new task..." required />
-                <input type="submit"
+</html>
