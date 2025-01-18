@@ -139,6 +139,14 @@
             outline: none;
         }
 
+        .new-task-form select {
+            padding: 12px;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+        }
+
         .new-task-form input[type="submit"] {
             padding: 12px 35px;
             background-color: #2ecc71;
@@ -158,15 +166,6 @@
             background-color: #ecf0f1;
             padding: 25px;
             border-radius: 12px;
-        }
-
-        .predefined-tasks select {
-            width: 100%;
-            padding: 12px;
-            font-size: 1.2rem;
-            border-radius: 8px;
-            border: 1px solid #ccc;
-            outline: none;
         }
 
         .footer {
@@ -258,21 +257,26 @@
             </div>
         </div>
 
+        <!-- Combined Add Task and Dropdown -->
         <div class="new-task-form">
             <form action="/todo/add/" method="post">
-                <input type="text" name="newtodo" placeholder="Add a new task" required />
+                <div>
+                    <label for="task-select">Select Predefined Task:</label>
+                    <select id="task-select" name="task">
+                        <option value="task1">Install and configure Docker</option>
+                        <option value="task2">Create a Docker file</option>
+                        <option value="task3">Create a Docker image</option>
+                        <option value="task4">Create an AWS Cloud account</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="custom-task">Or Add a Custom Task:</label>
+                    <input type="text" id="custom-task" name="newtodo" placeholder="Type your custom task here" />
+                </div>
+
                 <input type="submit" value="Add Task" />
             </form>
-        </div>
-
-        <div class="predefined-tasks">
-            <label for="task-select">Select a Predefined Task:</label>
-            <select id="task-select">
-                <option value="task1">Install and configure Docker</option>
-                <option value="task2">Create a Docker file</option>
-                <option value="task3">Create a Docker image</option>
-                <option value="task4">Create an AWS Cloud account</option>
-            </select>
         </div>
     </div>
 
