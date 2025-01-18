@@ -1,37 +1,110 @@
 <!DOCTYPE html>
+<html lang="en">
 
-<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List - 12 Factor App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
 
-    <head>
-        <title> To DO LIST# </title>
-        <style>
-            a {
-                text-decoration: none;
-                color: black;
-            }
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
 
-        </style>
-    </head>
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
 
-    <body>
-        <h1>   12 FACTOR APP!!!  </h1>
-        <ul>
-            <% todolist.forEach(function(todo, index) { %>
-            <li>
-                <a href="/todo/delete/<%= index %>">✘</a>
-                <a href="/todo/<%= index %>">✎</a>
-                <%- todo %>
-            </li>
-            <% }); %>
-        </ul>
+        li {
+            margin-bottom: 15px;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+        }
 
-        <form action="/todo/add/" method="post">
-            <p>
-                <label for="newtodo">What shoud I do?</label>
-                <input type="text" name="newtodo" id="newtodo" autofocus />
-                <input type="submit" value="Add" />
-            </p>
-        </form>
-    </body>
+        a {
+            margin-right: 10px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #e74c3c;
+        }
+
+        a.edit {
+            color: #3498db;
+        }
+
+        a.delete {
+            color: #e74c3c;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            color: #95a5a6;
+        }
+
+        input[type="text"] {
+            width: 300px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 15px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #27ae60;
+        }
+
+        label {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>12 Factor App - To-Do List</h1>
+
+    <!-- Display the list of tasks -->
+    <ul>
+        <% todolist.forEach(function(todo, index) { %>
+        <li>
+            <input type="checkbox" name="completed" <%= todo.completed ? 'checked' : '' %> disabled />
+            <a class="delete" href="/todo/delete/<%= index %>">✘</a>
+            <a class="edit" href="/todo/<%= index %>">✎</a>
+            <span class="<%= todo.completed ? 'completed' : '' %>">
+                <%- todo.description %>
+            </span>
+        </li>
+        <% }); %>
+    </ul>
+
+    <!-- Form to add a new task -->
+    <form action="/todo/add/" method="post">
+        <p>
+            <label for="newtodo">What should I do?</label>
+            <input type="text" name="newtodo" id="newtodo" autofocus />
+            <input type="submit" value="Add" />
+        </p>
+    </form>
+
+</body>
 
 </html>
