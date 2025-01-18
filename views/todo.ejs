@@ -128,8 +128,10 @@
             display: flex;
             flex-direction: column;
             gap: 25px;
-            margin-top: 40px;
             align-items: center;
+            width: 100%;
+            max-width: 800px;
+            margin-top: 30px;
         }
 
         .new-task-form select {
@@ -198,7 +200,7 @@
 
     <h1>12 Factor App - To-Do List</h1>
 
-    <!-- Add Task and Dropdown Form -->
+    <!-- Add Task and Dropdown Form Centered on Top -->
     <div class="new-task-form">
         <form action="/todo/add/" method="post">
             <select id="task-select" name="task">
