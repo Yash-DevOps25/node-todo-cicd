@@ -56,6 +56,10 @@
             display: flex;
             flex-direction: column;
             gap: 30px;
+            background-image: url('https://cdn-icons-png.flaticon.com/512/158/158747.png'); /* Notepad icon */
+            background-position: top 30px right 30px;
+            background-size: 150px;
+            background-repeat: no-repeat;
         }
 
         .task-list {
@@ -65,7 +69,7 @@
         }
 
         .task-item {
-            background: #ffffff;
+            background: #f9f9f9;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -278,15 +282,4 @@
         <div class="new-task-form">
             <form action="/todo/add/" method="post">
                 <input type="text" name="newtodo" placeholder="What should I do? Add a new task..." required />
-                <input type="submit" value="Add Task" />
-            </form>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>Powered by TCS-iON | 12 Factor App</p>
-    </div>
-
-</body>
-
-</html>
+                <input type="submit"
