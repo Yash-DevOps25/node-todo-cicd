@@ -16,15 +16,6 @@ pipeline {
             }
         }
 
-        // Stage 'Run Tests' is skipped by commenting it out or removing it
-        // stage('Run Tests') {
-        //     steps {
-        //         script {
-        //             echo 'Skipping tests...'
-        //         }
-        //     }
-        // }
-
         stage('Push Docker Images to Docker Hub') {
             steps {
                 script {
@@ -33,16 +24,6 @@ pipeline {
                         sh 'echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin'
                         sh 'docker-compose -f ${COMPOSE_FILE} push'
                     }
-                }
-            }
-        }
-
-        stage('Clean Up') {
-            steps {
-                script {
-                    echo 'Cleaning up Docker resources...'
-                    sh 'docker-compose -f ${COMPOSE_FILE} down'
-                    sh 'docker system prune -f'
                 }
             }
         }
