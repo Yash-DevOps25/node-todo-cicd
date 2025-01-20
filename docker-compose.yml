@@ -1,4 +1,5 @@
 version: '3'
+
 services:
   web:
     image: yashguj20/node-todo-cicd-image:latest
@@ -9,6 +10,7 @@ services:
       NODE_ENV: production
     networks:
       - app-network
+    restart: always  # Optional: Ensures the container restarts if it crashes
 
 networks:
   app-network:
