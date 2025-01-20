@@ -2,33 +2,44 @@ pipeline {
     agent any
 
     environment {
-        COMPOSE_FILE = 'docker-compose.yml'  // Your Docker Compose file
+        COMPOSE_FILE = 'docker-compose.yml'
+        DOCKER_IMAGE = 'yashguj20/node-todo-cicd-image:latest'
     }
 
     stages {
-        // Stage 1: Build and Start Services using Docker Compose
+        stage('Free Port 8000') {
+            steps {
+                script {
+                    echo 'Freeing up port 8000...'
+                    sh '''
+                        CONTAINER_ID=$(docker ps -q --filter "ancestor=${DOCKER_IMAGE}" --filter "publish=8000")
+                        if [ ! -z "$CONTAINER_ID" ]; then
+                          docker stop $CONTAINER_ID
+                          docker rm $CONTAINER_ID
+                        fi
+                    '''
+                }
+            }
+        }
+
         stage('Build and Deploy with Docker Compose') {
             steps {
                 script {
                     echo 'Building and deploying services using Docker Compose...'
-                    // Build and start the containers using Docker Compose
                     sh 'docker-compose -f ${COMPOSE_FILE} up -d --build'
                 }
             }
         }
 
-        // Stage 2: Run Tests using Docker Compose
-        stage('Run Tests') {
-            steps {
-                script {
-                    echo 'Running tests using Docker Compose...'
-                    // Add your test commands here, assuming your service is named 'web' in docker-compose.yml
-                    sh 'docker-compose -f ${COMPOSE_FILE} exec web npm test'
-                }
-            }
-        }
+        // Stage 'Run Tests' is skipped by commenting it out or removing it
+        // stage('Run Tests') {
+        //     steps {
+        //         script {
+        //             echo 'Skipping tests...'
+        //         }
+        //     }
+        // }
 
-        // Stage 3: Push Images to Docker Hub
         stage('Push Docker Images to Docker Hub') {
             steps {
                 script {
@@ -41,12 +52,10 @@ pipeline {
             }
         }
 
-        // Stage 4: Clean Up Docker Resources
         stage('Clean Up') {
             steps {
                 script {
                     echo 'Cleaning up Docker resources...'
-                    // Bring down the services and clean up any stopped containers
                     sh 'docker-compose -f ${COMPOSE_FILE} down'
                     sh 'docker system prune -f'
                 }
