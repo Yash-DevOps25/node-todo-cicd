@@ -7,21 +7,6 @@ pipeline {
     }
 
     stages {
-        stage('Free Port 8000') {
-            steps {
-                script {
-                    echo 'Freeing up port 8000...'
-                    sh '''
-                        CONTAINER_ID=$(docker ps -q --filter "ancestor=${DOCKER_IMAGE}" --filter "publish=8000")
-                        if [ ! -z "$CONTAINER_ID" ]; then
-                          docker stop $CONTAINER_ID
-                          docker rm $CONTAINER_ID
-                        fi
-                    '''
-                }
-            }
-        }
-
         stage('Build and Deploy with Docker Compose') {
             steps {
                 script {
